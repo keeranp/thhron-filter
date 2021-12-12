@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, UploadFile
 import cv2
 import numpy as np
 import io
+import base64
 from starlette.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,7 +11,7 @@ from gen import generate
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000"
+    "*"
 ]
 
 app.add_middleware(
@@ -21,12 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/')
-def root():
-    return {"Hello": "LL"}
-
 @app.post('/filter/thorn')
 async def thorn(file: UploadFile = File(...)):
+    print(file.filename)
     content = await file.read()
 
     #Process image
@@ -36,4 +34,6 @@ async def thorn(file: UploadFile = File(...)):
 
     _, encoded_img= cv2.imencode(".png",new_img)
 
-    return StreamingResponse(io.BytesIO(encoded_img.tobytes()), media_type="image/png")
+    encoded_img = base64.b64encode(encoded_img)
+
+    return encoded_img
