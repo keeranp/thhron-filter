@@ -22,6 +22,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get('/')
+def root():
+    return {"Hello": "You"}
+
 @app.post('/filter/thorn')
 async def thorn(file: UploadFile = File(...)):
     print(file.filename)
