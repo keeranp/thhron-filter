@@ -22,17 +22,13 @@ def draw_triangle(r_image, f_image):
     triangle_pts = np.array([pt1, pt2, pt3])
 
     #Draw triangle
-    cv2.drawContours(fake_img,[triangle_pts], 0, color, -1)
+    cv2.drawContours(f_image,[triangle_pts], 0, color, -1)
 
-''' Initialize images '''
-real_img = cv2.imread('spider.jpg')
-fake_img = np.ones(real_img.shape, np.uint8) * 255
+def generate(real_img):
+    ''' Initialize images '''
+    fake_img = np.ones(real_img.shape, np.uint8) * 255
 
-for i in range(50000):
-    draw_triangle(real_img, fake_img)
+    for i in range(50000):
+        draw_triangle(real_img, fake_img)
 
-cv2.imshow('real',real_img)
-cv2.imshow('fake', fake_img)
-cv2.waitKey()
-
-cv2.imwrite('fake.png',fake_img)
+    return fake_img
