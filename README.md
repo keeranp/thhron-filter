@@ -1,5 +1,5 @@
 # thorn-filter
-A filter to make an image more "thorny"
+An API that receives an image and sends back a more "thorny" version of it.
 
 ![real](https://github.com/keeranp/thorn-filter/blob/main/example/spider.jpg)
 
