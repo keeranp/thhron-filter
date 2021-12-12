@@ -3,3 +3,4 @@ numpy==1.19.5
 opencv_python==4.5.3.56
 starlette==0.16.0
 gunicorn
+uvicorn
