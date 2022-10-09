@@ -38,6 +38,8 @@ async def thorn(file: UploadFile = File(...)):
 
     _, encoded_img= cv2.imencode(".png",new_img)
 
-    encoded_img = base64.b64encode(encoded_img)
+    # encoded_img = base64.b64encode(encoded_img)
 
-    return encoded_img
+    # return encoded_img
+
+    return StreamingResponse(io.BytesIO(encoded_img.tobytes()), media_type="image/png")
