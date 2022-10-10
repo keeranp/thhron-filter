@@ -8,8 +8,8 @@ def draw_triangle(r_image, f_image):
 
     img_shape = r_image.shape
 
-    TRIANGLE_SIZE = int(img_shape[0] * img_shape[1] / 20000)
-    COLOR_VARIATION = 50
+    TRIANGLE_SIZE = min(int(img_shape[0] * img_shape[1] / 20000),25)
+    COLOR_VARIATION = 30
 
     # Get a random point from the real image
     pt = (randrange(img_shape[0]), randrange(img_shape[1]))
